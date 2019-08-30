@@ -1,13 +1,13 @@
 require 'journeylog'
 
 describe JourneyLog do
-  let (:)
-  let (:journey_log) { JourneyLog.new(Journey)}
+  let (:journey1) {Journey.new("algate")}
+  let (:journey_log) { JourneyLog.new(journey1)}
   #let (:exit_station) { double :exit_station }
 
   describe '#initialize' do
     it 'takes a class of Journey as a parameter' do
-      expect(journey_log.journey).to eq(Journey)
+      expect(journey_log.journey).to eq(journey1)
     end
   end
 
