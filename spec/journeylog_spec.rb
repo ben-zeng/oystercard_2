@@ -1,36 +1,28 @@
 require 'journeylog'
 
 describe JourneyLog do
-  let (:journey1) {Journey.new("algate")}
-  let (:journey_log) { JourneyLog.new(journey1)}
-  #let (:exit_station) { double :exit_station }
+ #let (:journey1) {Journey.new("algate")}
+  #let (:journey_log) { JourneyLog.new(journey1)}
+  let (:exit_station) { double :exit_station }
 
   describe '#initialize' do
-    it 'takes a class of Journey as a parameter' do
-      expect(journey_log.journey).to eq(journey1)
-    end
+
   end
 
   describe '#start' do
     it 'should start a new journey with an entry station' do
-      journey_log
-      #expect(journey_log.journey).to eq(Journey)
+      subject.start("algate")
+      expect(subject.journey[0]).to eq("algate")
     end
-
   end
 
+  describe "#finish" do
+    it "add an exit station to the current journey" do
+      subject.start("algate")
+      subject.finish(exit_station)
+      expect(subject.journey[1]).to eq(exit_station)
+    end
+  end
 
 end
 
-
-=begin
-
-  2.6.3 :007 > journeylog = JourneyLog.new(Journey)
-  => #<JourneyLog:0x00007fade58da208 @journey=Journey>
-      2.6.3 :008 > journey1 = Journey.new("Algate")
-  => #<Journey:0x00007fade4902600 @entry_station="Algate">
-      2.6.3 :009 > journeylog = JourneyLog.new(journey1)
-  => #<JourneyLog:0x00007fade4913dd8 @journey=#<Journey:0x00007fade4902600 @entry_station="Algate">>
-      2.6.3 :010 >
-
-=end
