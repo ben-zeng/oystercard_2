@@ -1,8 +1,8 @@
 require 'journeylog'
 
 describe JourneyLog do
- #let (:journey1) {Journey.new("algate")}
-  #let (:journey_log) { JourneyLog.new(journey1)}
+
+  let (:entry_station) { double :entry_station }
   let (:exit_station) { double :exit_station }
 
   describe '#initialize' do
@@ -11,16 +11,22 @@ describe JourneyLog do
 
   describe '#start' do
     it 'should start a new journey with an entry station' do
-      subject.start("algate")
-      expect(subject.journey[0]).to eq("algate")
+      subject.start(entry_station)
+      expect(subject.journey[0]).to eq(entry_station)
     end
   end
 
   describe "#finish" do
     it "add an exit station to the current journey" do
-      subject.start("algate")
+      subject.start(entry_station)
       subject.finish(exit_station)
       expect(subject.journey[1]).to eq(exit_station)
+    end
+
+    it 'will update journey list with complete journey' do
+      subject.start(entry_station)
+      subject.finish(exit_station)
+      expect(subject.journey_list[-1]).to include(entry: entry_station, exit: exit_station)
     end
   end
 
