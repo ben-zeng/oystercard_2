@@ -32,12 +32,6 @@ describe Oystercard do
       expect {subject.touch_in(station)}.to raise_error "Insufficient funds for journey"
     end
 
-
-    it 'charges fare amount during touch out' do
-      subject.top_up(Oystercard::MAXIMUM_BALANCE)
-      subject.touch_in(station)
-      expect{ subject.touch_out(station) }.to change{ subject.balance }.by(-Oystercard::MINIMUM_FARE)
-    end
   end
 
   context "fare between zones" do

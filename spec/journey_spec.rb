@@ -20,10 +20,6 @@ describe Journey do
   end 
 
   describe '#calculate_fare' do
-    it 'outputs minimum fare for complete journey' do
-      journey_1.exit(exit_station)
-      expect(journey_1.calculate_fare).to eq(1)
-    end
 
     it 'outputs penalty fare with no touch out' do
       expect(journey_1.calculate_fare).to eq(6)

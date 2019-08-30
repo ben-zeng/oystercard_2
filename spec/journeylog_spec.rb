@@ -1,7 +1,8 @@
 require 'journeylog'
 
 describe JourneyLog do
-
+ #let (:journey1) {Journey.new("algate")}
+  #let (:journey_log) { JourneyLog.new(journey1)}
   let (:entry_station) { double :entry_station }
   let (:exit_station) { double :exit_station }
 
