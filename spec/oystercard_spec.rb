@@ -39,4 +39,17 @@ describe Oystercard do
       expect{ subject.touch_out(station) }.to change{ subject.balance }.by(-Oystercard::MINIMUM_FARE)
     end
   end
+
+  context "fare between zones" do
+    let(:station1) { Station.new(1, "station1")}
+    let(:station5) { Station.new(5, "station5")}
+
+    it "calculates the fare between zones" do
+      subject.top_up(20)
+      subject.touch_in(station1)
+      subject.touch_out(station5)
+      expect(subject.balance).to eq(15)
+    end
+  end
+
 end
